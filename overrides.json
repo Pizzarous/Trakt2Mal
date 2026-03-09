@@ -1,0 +1,266 @@
+{
+  "_readme": [
+    "Local overrides for Trakt → MAL ID mapping.",
+    "These take full priority over the downloaded DB.",
+    "",
+    "Shows:",
+    "  trakt_id      — find at trakt.tv/shows/<slug> (the numeric ID in the URL, or use the API)",
+    "  season        — Trakt season number",
+    "  mal_id        — myanimelist.net/anime/<id>",
+    "  episode_range — optional [start, end] (inclusive). Use when one Trakt season spans",
+    "                  multiple MAL entries. Episodes are normalized automatically,",
+    "                  so ep 13 in range [13, 25] becomes ep 1 on MAL.",
+    "  comment       — optional, ignored by the tool",
+    "",
+    "Movies:",
+    "  trakt_id / mal_id only — no ranges needed."
+  ],
+  "shows": [
+    {
+      "comment": "Oshi no Ko S1 — Trakt S1 covers all MAL cours",
+      "trakt_id": 196091,
+      "season": 1,
+      "mal_id": 52034,
+      "episode_range": [1, 11]
+    },
+    {
+      "comment": "Oshi no Ko S2 — same Trakt season, second cour",
+      "trakt_id": 196091,
+      "season": 1,
+      "mal_id": 55791,
+      "episode_range": [12, 24]
+    },
+    {
+      "comment": "Oshi no Ko S3 — same Trakt season, third cour",
+      "trakt_id": 196091,
+      "season": 1,
+      "mal_id": 60058,
+      "episode_range": [25, 35]
+    },
+    {
+      "comment": "Solo Leveling — Trakt S1 covers both MAL cours",
+      "trakt_id": 193023,
+      "season": 1,
+      "mal_id": 52299,
+      "episode_range": [1, 12]
+    },
+    {
+      "comment": "Solo Leveling Part 2 — same Trakt season, second cour",
+      "trakt_id": 193023,
+      "season": 1,
+      "mal_id": 58567,
+      "episode_range": [13, 25]
+    },
+    {
+      "comment": "SPY x FAMILY Season 1 — Trakt S1 has 25 eps (Part 1 + Part 2 combined)",
+      "trakt_id": 190742,
+      "season": 1,
+      "mal_id": 50265,
+      "episode_range": [1, 12]
+    },
+    {
+      "comment": "SPY x FAMILY Season 1 Part 2 — same Trakt S1, second cour",
+      "trakt_id": 190742,
+      "season": 1,
+      "mal_id": 50602,
+      "episode_range": [13, 25]
+    },
+    {
+      "comment": "SPY x FAMILY Season 2",
+      "trakt_id": 190742,
+      "season": 2,
+      "mal_id": 53887,
+      "episode_range": [1, 12]
+    },
+    {
+      "comment": "SPY x FAMILY Season 3",
+      "trakt_id": 190742,
+      "season": 3,
+      "mal_id": 59027,
+      "episode_range": [1, 13]
+    },
+    {
+      "comment": "Dan Da Dan — Trakt S1 has 24 eps (both cours combined)",
+      "trakt_id": 215309,
+      "season": 1,
+      "mal_id": 57334,
+      "episode_range": [1, 12]
+    },
+    {
+      "comment": "Dan Da Dan 2nd Season — same Trakt S1, second cour",
+      "trakt_id": 215309,
+      "season": 1,
+      "mal_id": 60543,
+      "episode_range": [13, 24]
+    },
+    {
+      "comment": "Mushoku Tensei S1 — Trakt S1 has 23 eps (Part 1 + Part 2 combined)",
+      "trakt_id": 156460,
+      "season": 1,
+      "mal_id": 39535,
+      "episode_range": [1, 11]
+    },
+    {
+      "comment": "Mushoku Tensei Part 2 — same Trakt S1, second cour",
+      "trakt_id": 156460,
+      "season": 1,
+      "mal_id": 45576,
+      "episode_range": [12, 23]
+    },
+    {
+      "comment": "Mushoku Tensei II — Trakt S2 has 24 eps (both cours combined)",
+      "trakt_id": 156460,
+      "season": 2,
+      "mal_id": 51179,
+      "episode_range": [1, 12]
+    },
+    {
+      "comment": "Mushoku Tensei II Part 2 — same Trakt S2, second cour",
+      "trakt_id": 156460,
+      "season": 2,
+      "mal_id": 55888,
+      "episode_range": [13, 24]
+    },
+    {
+      "comment": "Re:Zero S1 — Trakt S1 includes specials (eps 26-32); cap at 25",
+      "trakt_id": 104310,
+      "season": 1,
+      "mal_id": 31240,
+      "episode_range": [1, 25]
+    },
+    {
+      "comment": "My Dress-Up Darling — Trakt S1 has 24 eps (both cours combined)",
+      "trakt_id": 190379,
+      "season": 1,
+      "mal_id": 48736,
+      "episode_range": [1, 12]
+    },
+    {
+      "comment": "My Dress-Up Darling Season 2 — same Trakt S1, second cour",
+      "trakt_id": 190379,
+      "season": 1,
+      "mal_id": 53065,
+      "episode_range": [13, 24]
+    },
+    {
+      "comment": "Haruhi S1 — Trakt S1 has 28 eps; cap at 14 for the 2006 MAL entry",
+      "trakt_id": 60988,
+      "season": 1,
+      "mal_id": 849,
+      "episode_range": [1, 14]
+    },
+    {
+      "comment": "Attack on Titan S3 — Trakt S3 has 22 eps (Part 1 + Part 2 combined)",
+      "trakt_id": 1420,
+      "season": 3,
+      "mal_id": 35760,
+      "episode_range": [1, 12]
+    },
+    {
+      "comment": "Attack on Titan S3 Part 2 — same Trakt S3, second half",
+      "trakt_id": 1420,
+      "season": 3,
+      "mal_id": 38524,
+      "episode_range": [13, 22]
+    },
+    {
+      "comment": "Attack on Titan Final Season — Trakt S4 has 28 eps (Part 1 + Part 2 combined)",
+      "trakt_id": 1420,
+      "season": 4,
+      "mal_id": 40028,
+      "episode_range": [1, 16]
+    },
+    {
+      "comment": "Attack on Titan Final Season Part 2 — same Trakt S4, second half",
+      "trakt_id": 1420,
+      "season": 4,
+      "mal_id": 48583,
+      "episode_range": [17, 28]
+    },
+    {
+      "comment": "Rent-a-Girlfriend — Trakt S1 has all 48 eps (4 MAL seasons combined)",
+      "trakt_id": 160825,
+      "season": 1,
+      "mal_id": 40839,
+      "episode_range": [1, 12]
+    },
+    {
+      "comment": "Rent-a-Girlfriend 2nd Season",
+      "trakt_id": 160825,
+      "season": 1,
+      "mal_id": 42963,
+      "episode_range": [13, 24]
+    },
+    {
+      "comment": "Rent-a-Girlfriend 3rd Season",
+      "trakt_id": 160825,
+      "season": 1,
+      "mal_id": 53050,
+      "episode_range": [25, 36]
+    },
+    {
+      "comment": "Rent-a-Girlfriend 4th Season",
+      "trakt_id": 160825,
+      "season": 1,
+      "mal_id": 59277,
+      "episode_range": [37, 48]
+    },
+    {
+      "comment": "NieR:Automata — Trakt S1 has 24 eps (both cours combined)",
+      "trakt_id": 193608,
+      "season": 1,
+      "mal_id": 51105,
+      "episode_range": [1, 12]
+    },
+    {
+      "comment": "NieR:Automata Part 2 — same Trakt S1, second cour",
+      "trakt_id": 193608,
+      "season": 1,
+      "mal_id": 56063,
+      "episode_range": [13, 24]
+    },
+    {
+      "comment": "Frieren: Beyond Journey's End — Trakt S1 has 38 eps (both cours combined)",
+      "trakt_id": 198225,
+      "season": 1,
+      "mal_id": 52991,
+      "episode_range": [1, 28]
+    },
+    {
+      "comment": "Frieren: Beyond Journey's End — same Trakt S1, second cour",
+      "trakt_id": 198225,
+      "season": 1,
+      "mal_id": 52991,
+      "episode_range": [29, 38]
+    },
+    {
+      "comment": "Mushoku Tensei S1 — Trakt S1 has 23 eps (Part 1 + Part 2 combined)",
+      "trakt_id": 156460,
+      "season": 1,
+      "mal_id": 39535,
+      "episode_range": [1, 11]
+    },
+    {
+      "comment": "Mushoku Tensei S1 — same Trakt S1, second cour",
+      "trakt_id": 156460,
+      "season": 1,
+      "mal_id": 45576,
+      "episode_range": [12, 23]
+    },
+    {
+      "comment": "Mushoku Tensei S2 — Trakt S2 has 24 eps (Part 1 + Part 2 combined)",
+      "trakt_id": 156460,
+      "season": 2,
+      "mal_id": 51179,
+      "episode_range": [1, 12]
+    },
+    {
+      "comment": "Mushoku Tensei S2 — same Trakt S2, second cour",
+      "trakt_id": 156460,
+      "season": 2,
+      "mal_id": 55888,
+      "episode_range": [12, 24]
+    }
+  ],
+  "movies": []
+}

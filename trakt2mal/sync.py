@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from .mal import get_anime_details, get_my_list, update_anime
+from .mal import get_anime_details, get_my_anime_status, get_my_list, update_anime
 from .mapper import lookup_movie, lookup_show, update_db
 from .trakt import get_ratings, get_watched_movies, get_watched_shows
 
@@ -165,7 +165,11 @@ def run_sync(
                     stats.errors += 1
                     continue
 
-                current = mal_list.get(mal_id, {})
+                if mal_id in mal_list:
+                    current = mal_list[mal_id]
+                else:
+                    current = get_my_anime_status(mal_id)
+                    mal_list[mal_id] = current  # cache for reuse
                 current_watched = current.get("num_watched_episodes", 0)
                 current_status = current.get("status", "")
 
@@ -254,7 +258,11 @@ def run_sync(
                 print(f"  UNMATCHED {title} (trakt_id={trakt_id})")
             continue
 
-        current = mal_list.get(mal_id, {})
+        if mal_id in mal_list:
+            current = mal_list[mal_id]
+        else:
+            current = get_my_anime_status(mal_id)
+            mal_list[mal_id] = current  # cache for reuse
         current_status = current.get("status", "")
         score = movie_ratings.get(trakt_id) if sync_ratings else None
 

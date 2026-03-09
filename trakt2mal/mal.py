@@ -43,11 +43,13 @@ def get_my_list() -> dict[int, dict]:
         )
         resp.raise_for_status()
         data = resp.json()
-        results.extend(data["data"])
+        page = data["data"]
+        results.extend(page)
+
 
         if not data.get("paging", {}).get("next"):
             break
-        offset += 1000
+        offset += len(page)
         time.sleep(0.3)
 
     out: dict[int, dict] = {}
@@ -74,6 +76,29 @@ def get_anime_details(mal_id: int) -> dict | None:
         return None
     resp.raise_for_status()
     return resp.json()
+
+
+def get_my_anime_status(mal_id: int) -> dict:
+    """
+    Fetch the authenticated user's list status for a specific anime.
+    Returns the same shape as a get_my_list() entry value, defaulting to 0/empty if not on list.
+    """
+    resp = requests.get(
+        f"{BASE_URL}/anime/{mal_id}",
+        headers=_headers(),
+        params={"fields": "num_episodes,my_list_status{num_episodes_watched,score,status}"},
+    )
+    if resp.status_code == 404:
+        return {"status": "", "num_watched_episodes": 0, "score": 0, "num_episodes": 0}
+    resp.raise_for_status()
+    data = resp.json()
+    ls = data.get("my_list_status", {})
+    return {
+        "status": ls.get("status", ""),
+        "num_watched_episodes": ls.get("num_episodes_watched", 0),
+        "score": ls.get("score", 0),
+        "num_episodes": data.get("num_episodes", 0),
+    }
 
 
 def update_anime(

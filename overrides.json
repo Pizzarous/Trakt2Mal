@@ -52,28 +52,28 @@
       "episode_range": [13, 25]
     },
     {
-      "comment": "SPY x FAMILY Season 1 — Trakt S1 has 25 eps (Part 1 + Part 2 combined)",
+      "comment": "SPY x FAMILY S1 — Trakt S1 has 25 eps (Part 1 + Part 2 combined)",
       "trakt_id": 190742,
       "season": 1,
       "mal_id": 50265,
       "episode_range": [1, 12]
     },
     {
-      "comment": "SPY x FAMILY Season 1 Part 2 — same Trakt S1, second cour",
+      "comment": "SPY x FAMILY Part 2 — same Trakt S1, second cour",
       "trakt_id": 190742,
       "season": 1,
       "mal_id": 50602,
       "episode_range": [13, 25]
     },
     {
-      "comment": "SPY x FAMILY Season 2",
+      "comment": "SPY x FAMILY Season 2 — Trakt S2 has 12 eps",
       "trakt_id": 190742,
       "season": 2,
       "mal_id": 53887,
       "episode_range": [1, 12]
     },
     {
-      "comment": "SPY x FAMILY Season 3",
+      "comment": "SPY x FAMILY Season 3 — Trakt S3 has 13 eps",
       "trakt_id": 190742,
       "season": 3,
       "mal_id": 59027,
@@ -143,11 +143,18 @@
       "episode_range": [13, 24]
     },
     {
-      "comment": "Haruhi S1 — Trakt S1 has 28 eps; cap at 14 for the 2006 MAL entry",
+      "comment": "Haruhi S1 — Trakt S1 has 28 eps (both seasons combined); first 14 eps",
       "trakt_id": 60988,
       "season": 1,
       "mal_id": 849,
       "episode_range": [1, 14]
+    },
+    {
+      "comment": "Haruhi S2 — same Trakt S1, second half (eps 15-28)",
+      "trakt_id": 60988,
+      "season": 1,
+      "mal_id": 4382,
+      "episode_range": [15, 28]
     },
     {
       "comment": "Attack on Titan S3 — Trakt S3 has 22 eps (Part 1 + Part 2 combined)",
@@ -227,39 +234,11 @@
       "episode_range": [1, 28]
     },
     {
-      "comment": "Frieren: Beyond Journey's End — same Trakt S1, second cour",
+      "comment": "Frieren: Beyond Journey's End Season 2 — same Trakt S1, second cour",
       "trakt_id": 198225,
       "season": 1,
-      "mal_id": 52991,
+      "mal_id": 59978,
       "episode_range": [29, 38]
-    },
-    {
-      "comment": "Mushoku Tensei S1 — Trakt S1 has 23 eps (Part 1 + Part 2 combined)",
-      "trakt_id": 156460,
-      "season": 1,
-      "mal_id": 39535,
-      "episode_range": [1, 11]
-    },
-    {
-      "comment": "Mushoku Tensei S1 — same Trakt S1, second cour",
-      "trakt_id": 156460,
-      "season": 1,
-      "mal_id": 45576,
-      "episode_range": [12, 23]
-    },
-    {
-      "comment": "Mushoku Tensei S2 — Trakt S2 has 24 eps (Part 1 + Part 2 combined)",
-      "trakt_id": 156460,
-      "season": 2,
-      "mal_id": 51179,
-      "episode_range": [1, 12]
-    },
-    {
-      "comment": "Mushoku Tensei S2 — same Trakt S2, second cour",
-      "trakt_id": 156460,
-      "season": 2,
-      "mal_id": 55888,
-      "episode_range": [13, 24]
     }
   ],
   "movies": []

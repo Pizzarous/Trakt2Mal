@@ -12,9 +12,25 @@ _run/1-install.bat
 
 Or manually: `pip install -r requirements.txt`
 
-**2. Configure credentials**
+**2. Create API apps**
 
-Copy `.env.example` to `.env` and fill in your API keys:
+You need to register an app on both services to get API credentials:
+
+**Trakt:**
+
+1. Go to [trakt.tv/oauth/applications](https://trakt.tv/oauth/applications) → _New Application_
+2. Fill in any name, set redirect URI to `http://localhost`
+3. Copy the **Client ID** and **Client Secret**
+
+**MyAnimeList:**
+
+1. Go to [myanimelist.net/apiconfig](https://myanimelist.net/apiconfig) → _Create ID_
+2. Fill in any app name, set App Type to _other_, redirect URI to `http://localhost`
+3. Copy the **Client ID** and **Client Secret**
+
+**3. Configure credentials**
+
+Copy `.env.example` to `.env` and paste your keys:
 
 ```env
 TRAKT_CLIENT_ID=...
@@ -23,7 +39,7 @@ MAL_CLIENT_ID=...
 MAL_CLIENT_SECRET=...
 ```
 
-**3. Authenticate**
+**4. Authenticate**
 
 ```
 _run/2-auth.bat

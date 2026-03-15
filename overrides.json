@@ -239,6 +239,27 @@
       "season": 1,
       "mal_id": 59978,
       "episode_range": [29, 38]
+    },
+    {
+      "comment": "Jujutsu Kaisen S1 — Trakt S1 has 59 eps (3 MAL cours combined)",
+      "trakt_id": 158594,
+      "season": 1,
+      "mal_id": 40748,
+      "episode_range": [1, 24]
+    },
+    {
+      "comment": "Jujutsu Kaisen S2 — same Trakt S1, second cour",
+      "trakt_id": 158594,
+      "season": 1,
+      "mal_id": 51009,
+      "episode_range": [25, 47]
+    },
+    {
+      "comment": "Jujutsu Kaisen S3 — same Trakt S1, third cour",
+      "trakt_id": 158594,
+      "season": 1,
+      "mal_id": 57658,
+      "episode_range": [48, 59]
     }
   ],
   "movies": []

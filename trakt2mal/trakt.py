@@ -1,4 +1,5 @@
-"""Trakt API v2 client."""
+"""Trakt API v3 client."""
+
 import os
 
 import requests
@@ -15,7 +16,7 @@ BASE_URL = "https://api.trakt.tv"
 def _headers() -> dict:
     return {
         "Content-Type": "application/json",
-        "trakt-api-version": "2",
+        "trakt-api-version": "3",
         "trakt-api-key": TRAKT_CLIENT_ID,
         "Authorization": f"Bearer {get_trakt_token()}",
     }

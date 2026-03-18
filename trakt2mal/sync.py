@@ -63,6 +63,19 @@ def _get_total_episodes(mal_id: int, mal_list: dict) -> int:
     return (details or {}).get("num_episodes", 0)
 
 
+def _flush(
+    updates: list, errors: list, dropped: list, ok: list, unmatched: list
+) -> None:
+    """Print buffered lines grouped by category."""
+    groups = [errors, unmatched, dropped, ok, updates]
+    non_empty = [g for g in groups if g]
+    for i, group in enumerate(non_empty):
+        for line in group:
+            print(line)
+        if i < len(non_empty) - 1:
+            print("  --")
+
+
 class _Stats:
     def __init__(self):
         self.updated = self.skipped = self.unmapped = self.errors = 0
@@ -111,6 +124,12 @@ def run_sync(
 
     # ------------------------------------------------------------------ shows
     print("\n— Shows —")
+    s_updates: list[str] = []
+    s_errors: list[str] = []
+    s_dropped: list[str] = []
+    s_ok: list[str] = []
+    s_unmatched: list[str] = []
+
     for show_entry in watched_shows:
         show = show_entry["show"]
         trakt_id: int = show["ids"]["trakt"]
@@ -127,7 +146,9 @@ def run_sync(
             if not mappings:
                 stats.unmapped += 1
                 if show_unmatched:
-                    print(f"  UNMATCHED {title} S{season_num} (trakt_id={trakt_id})")
+                    s_unmatched.append(
+                        f"  UNMATCHED {title} S{season_num} (trakt_id={trakt_id})"
+                    )
                 continue
 
             all_played = [
@@ -159,7 +180,7 @@ def run_sync(
                 try:
                     total_eps = _get_total_episodes(mal_id, mal_list)
                 except Exception as exc:
-                    print(
+                    s_errors.append(
                         f"  ERROR fetching details for {title} S{season_num} (MAL {mal_id}): {exc}"
                     )
                     stats.errors += 1
@@ -175,6 +196,20 @@ def run_sync(
 
                 if current_status == "dropped":
                     stats.skipped += 1
+                    if verbose:
+                        range_str = (
+                            f" eps {ep_range[0]}-{ep_range[1]}" if ep_range else ""
+                        )
+                        trakt_url = _link(
+                            "Trakt",
+                            f"https://trakt.tv/shows/{trakt_slug}/seasons/{season_num}",
+                        )
+                        mal_url = _link(
+                            f"MAL {mal_id}", f"https://myanimelist.net/anime/{mal_id}"
+                        )
+                        s_dropped.append(
+                            f"  [DROPPED] {title} S{season_num}{range_str} [{trakt_url}] [{mal_url}]"
+                        )
                     continue
 
                 new_watched = max(watched_eps, current_watched)
@@ -215,7 +250,7 @@ def run_sync(
                         mal_url = _link(
                             f"MAL {mal_id}", f"https://myanimelist.net/anime/{mal_id}"
                         )
-                        print(
+                        s_ok.append(
                             f"  [OK] {title} S{season_num}{range_str} [{trakt_url}] [{mal_url}]: {current_watched} eps, {current_status}{score_str}"
                         )
                     continue
@@ -229,7 +264,7 @@ def run_sync(
                 mal_url = _link(
                     f"MAL {mal_id}", f"https://myanimelist.net/anime/{mal_id}"
                 )
-                print(
+                s_updates.append(
                     f"  {prefix}{title} S{season_num}{range_str} [{trakt_url}] [{mal_url}]: "
                     f"{current_watched}→{new_watched} eps, {new_status}{score_str}"
                 )
@@ -240,11 +275,19 @@ def run_sync(
                     )
                     stats.updated += 1
                 except Exception as exc:
-                    print(f"  ERROR updating {title} S{season_num}: {exc}")
+                    s_errors.append(f"  ERROR updating {title} S{season_num}: {exc}")
                     stats.errors += 1
+
+    _flush(s_updates, s_errors, s_dropped, s_ok, s_unmatched)
 
     # ----------------------------------------------------------------- movies
     print("\n— Movies —")
+    m_updates: list[str] = []
+    m_errors: list[str] = []
+    m_dropped: list[str] = []
+    m_ok: list[str] = []
+    m_unmatched: list[str] = []
+
     for movie_entry in watched_movies:
         movie = movie_entry["movie"]
         trakt_id = movie["ids"]["trakt"]
@@ -255,7 +298,7 @@ def run_sync(
         if not mal_id:
             stats.unmapped += 1
             if show_unmatched:
-                print(f"  UNMATCHED {title} (trakt_id={trakt_id})")
+                m_unmatched.append(f"  UNMATCHED {title} (trakt_id={trakt_id})")
             continue
 
         if mal_id in mal_list:
@@ -278,12 +321,12 @@ def run_sync(
                         if current.get("score")
                         else ""
                     )
-                    print(
+                    m_ok.append(
                         f"  [OK] {title} [{trakt_url}] [{mal_url}]: completed{score_str}"
                     )
                 continue
             prefix = "[DRY RUN] " if dry_run else ""
-            print(
+            m_updates.append(
                 f"  {prefix}{title} [{trakt_url}] [{mal_url}]: update score → {score}"
             )
             try:
@@ -296,26 +339,32 @@ def run_sync(
                 )
                 stats.updated += 1
             except Exception as exc:
-                print(f"  ERROR updating {title}: {exc}")
+                m_errors.append(f"  ERROR updating {title}: {exc}")
                 stats.errors += 1
             continue
 
         try:
             total_eps = _get_total_episodes(mal_id, mal_list) or 1
         except Exception as exc:
-            print(f"  ERROR fetching details for {title} (MAL {mal_id}): {exc}")
+            m_errors.append(
+                f"  ERROR fetching details for {title} (MAL {mal_id}): {exc}"
+            )
             stats.errors += 1
             continue
 
         score_str = f", score={score}" if score else ""
         prefix = "[DRY RUN] " if dry_run else ""
-        print(f"  {prefix}{title} [{trakt_url}] [{mal_url}]: completed{score_str}")
+        m_updates.append(
+            f"  {prefix}{title} [{trakt_url}] [{mal_url}]: completed{score_str}"
+        )
 
         try:
             update_anime(mal_id, total_eps, "completed", score=score, dry_run=dry_run)
             stats.updated += 1
         except Exception as exc:
-            print(f"  ERROR updating {title}: {exc}")
+            m_errors.append(f"  ERROR updating {title}: {exc}")
             stats.errors += 1
+
+    _flush(m_updates, m_errors, m_dropped, m_ok, m_unmatched)
 
     print(f"\nDone: {stats}")

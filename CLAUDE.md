@@ -63,7 +63,7 @@ Authentication tokens are stored locally and persist across runs. Only re-auth i
 ## Key Behaviours
 
 - **DB update on every sync**: `run_sync()` calls `update_db()` at the start of each run.
-- **Dropped protection**: If a MAL entry is marked `dropped`, the sync skips it entirely.
+- **Dropped protection**: If a MAL entry is marked `dropped`, the sync skips it entirely. With `--verbose`, skipped entries show as `[DROPPED]`.
 - **Episode range overrides**: `overrides.json` maps `(trakt_id, season)` to one or more MAL entries with explicit episode ranges. Used for shows where Trakt combines multiple MAL cours into one season. Episode numbers are normalized: ep N in range `[start, end]` maps to ep `N - (start - 1)` on MAL.
 
 ## MAL API Notes

@@ -89,7 +89,7 @@ Some anime are split across multiple MAL entries but grouped as one season on Tr
 
 ### Dropped Shows
 
-If a show is marked as `dropped` on MAL, the sync will never overwrite it. Mark shows as dropped on MAL to permanently exclude them from syncing.
+If a show is marked as `dropped` on MAL, the sync will never overwrite it. Mark shows as dropped on MAL to permanently exclude them from syncing. With `--verbose`, dropped entries appear as `[DROPPED]` in the output.
 
 ## Notes
 

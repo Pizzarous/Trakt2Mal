@@ -4,7 +4,7 @@
     "These take full priority over the downloaded DB.",
     "",
     "Shows:",
-    "  trakt_id      — find at trakt.tv/shows/<slug> (the numeric ID in the URL, or use the API)",
+    "  trakt_id      — find at app.trakt.tv/shows/<slug> (the numeric ID in the URL, or use the API)",
     "  season        — Trakt season number",
     "  mal_id        — myanimelist.net/anime/<id>",
     "  episode_range — optional [start, end] (inclusive). Use when one Trakt season spans",

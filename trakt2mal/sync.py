@@ -202,7 +202,7 @@ def run_sync(
                         )
                         trakt_url = _link(
                             "Trakt",
-                            f"https://trakt.tv/shows/{trakt_slug}/seasons/{season_num}",
+                            f"https://app.trakt.tv/shows/{trakt_slug}?season={season_num}",
                         )
                         mal_url = _link(
                             f"MAL {mal_id}", f"https://myanimelist.net/anime/{mal_id}"
@@ -245,7 +245,7 @@ def run_sync(
                         )
                         trakt_url = _link(
                             "Trakt",
-                            f"https://trakt.tv/shows/{trakt_slug}/seasons/{season_num}",
+                            f"https://app.trakt.tv/shows/{trakt_slug}?season={season_num}",
                         )
                         mal_url = _link(
                             f"MAL {mal_id}", f"https://myanimelist.net/anime/{mal_id}"
@@ -259,7 +259,7 @@ def run_sync(
                 score_str = f", score={score}" if score else ""
                 prefix = "[DRY RUN] " if dry_run else ""
                 trakt_url = _link(
-                    "Trakt", f"https://trakt.tv/shows/{trakt_slug}/seasons/{season_num}"
+                    "Trakt", f"https://app.trakt.tv/shows/{trakt_slug}?season={season_num}"
                 )
                 mal_url = _link(
                     f"MAL {mal_id}", f"https://myanimelist.net/anime/{mal_id}"
@@ -309,7 +309,7 @@ def run_sync(
         current_status = current.get("status", "")
         score = movie_ratings.get(trakt_id) if sync_ratings else None
 
-        trakt_url = _link("Trakt", f"https://trakt.tv/movies/{trakt_slug}")
+        trakt_url = _link("Trakt", f"https://app.trakt.tv/movies/{trakt_slug}")
         mal_url = _link(f"MAL {mal_id}", f"https://myanimelist.net/anime/{mal_id}")
 
         if current_status == "completed":
